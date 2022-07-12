@@ -3,7 +3,7 @@ import './App.css';
 import Accordion from "./components/Accordion";
 import {Rating} from "./components/Rating";
 
-function App() {
+function App(props: any) {
     console.log("App rendering")
     return (
         <div className="App">
@@ -11,8 +11,8 @@ function App() {
             <PageTitle title={"Title"}/>
             Article 1
             <Rating value={3} />
-            <Accordion title={"First accordion"}/>
-            <Accordion title={"Second accordion"}/>
+            <Accordion titleValue={"First accordion"} collapsed={true}/>
+            <Accordion titleValue={"Second accordion"} collapsed={false}/>
             Article 2
             <Rating value={0} />
             <Rating value={1} />
@@ -24,7 +24,11 @@ function App() {
     );
 }
 
-function PageTitle(props: any) {
+type PageTitlePropsType = {
+    title: string
+}
+
+function PageTitle(props: PageTitlePropsType) {
     console.log("AppTitle rendering")
     return <h1>{props.title}</h1>
 }
