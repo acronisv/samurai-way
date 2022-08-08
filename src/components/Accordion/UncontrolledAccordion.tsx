@@ -9,23 +9,27 @@ function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
 
     const [collapsed, setCollapsed] = useState(false)
 
+    const setCollapsedCallback = () => {
+        setCollapsed(!collapsed)
+    }
+
 
     return <div>
-        <UncontrolledAccordionTitle title={props.titleValue}/>
-        <button onClick={()=>{setCollapsed(!collapsed)}}>Toggle</button>
+        <UncontrolledAccordionTitle title={props.titleValue} setCollapsedCallback={setCollapsedCallback}/>
         {!collapsed && <UncontrolledAccordionBody />}
 
     </div>
 }
 
 type UncontrolledAccordionTitlePropsType = {
-    title: string
+    title: string,
+    setCollapsedCallback: ()=>void
 }
 
 function UncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
     console.log("UncontrolledAccordion.tsx title rendering")
     return (
-        <h3>{props.title}</h3>
+        <h3 onClick={()=>{props.setCollapsedCallback()}}>{props.title}</h3>
     )
 }
 
