@@ -1,25 +1,30 @@
 import React from 'react';
 import './App.css';
-import Accordion from "./components/Accordion";
-import {Rating} from "./components/Rating";
+import Accordion from "./components/Accordion/Accordion";
+import {Rating} from "./components/Rating/Rating";
+import {OnOff} from "./components/OnOff/OnOff";
+import UncontrolledAccordion from "./components/Accordion/UncontrolledAccordion";
+import {UncontrolledRating} from "./components/Rating/UncontrolledRating";
 
 function App(props: any) {
     console.log("App rendering")
     return (
         <div className="App">
-            <PageTitle title={"This is app component"}/>
-            <PageTitle title={"Title"}/>
-            Article 1
-            <Rating value={3} />
-            <Accordion titleValue={"First accordion"} collapsed={true}/>
-            <Accordion titleValue={"Second accordion"} collapsed={false}/>
-            Article 2
-            <Rating value={0} />
-            <Rating value={1} />
-            <Rating value={2} />
-            <Rating value={3} />
-            <Rating value={4} />
-            <Rating value={5} />
+            {/*<PageTitle title={"This is app component"}/>*/}
+            {/*<PageTitle title={"Title"}/>*/}
+            {/*Article 1*/}
+            {/*<Accordion titleValue={"First accordion"} collapsed={true}/>*/}
+            {/*<Accordion titleValue={"Second accordion"} collapsed={false}/>*/}
+            {/*Article 2*/}
+            {/*<Rating value={0} />*/}
+            {/*<Rating value={1} />*/}
+            {/*<Rating value={2} />*/}
+            {/*<Rating value={3} />*/}
+            {/*<Rating value={4} />*/}
+            {/*<Rating value={5} />*/}
+            <OnOff/>
+            <UncontrolledAccordion titleValue={"Menu"}/>
+            <UncontrolledRating/>
         </div>
     );
 }
