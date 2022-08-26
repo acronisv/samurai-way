@@ -11,11 +11,11 @@ export function UncontrolledRating() {
 
     return (
         <div>
-            <Star selected={value > 0} setValueCallback={()=>setValueCallback(1)}/>
-            <Star selected={value > 1} setValueCallback={()=>setValueCallback(2)}/>
-            <Star selected={value > 2} setValueCallback={()=>setValueCallback(3)}/>
-            <Star selected={value > 3} setValueCallback={()=>setValueCallback(4)}/>
-            <Star selected={value > 4} setValueCallback={()=>setValueCallback(5)}/>
+            <Star selected={value > 0} setValueCallback={()=>setValueCallback(1)} />
+            <Star selected={value > 1} setValueCallback={()=>setValueCallback(2)} />
+            <Star selected={value > 2} setValueCallback={()=>setValueCallback(3)} />
+            <Star selected={value > 3} setValueCallback={()=>setValueCallback(4)} />
+            <Star selected={value > 4} setValueCallback={()=>setValueCallback(5)} />
         </div>
     )
 }

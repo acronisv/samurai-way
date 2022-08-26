@@ -1,27 +1,34 @@
+import {useState} from "react";
+
 type PropsType = {
-    on: boolean
-    setStatus: (value: boolean) => void
+    onClick: (val:boolean)=>void
 }
 
-export const OnOff = (props: PropsType) => {
+export const UncontrolledOnOff = (props:PropsType) => {
+    console.log("UncontrolledOnOff rendering")
+    let [on, setOn] = useState(false)
+
+    console.log("on:" + on)
+
     const wrapper = {
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
     }
+
     const onStyle = {
         width: "30px",
         height: "30px",
         border: "1px solid black",
         margin: "2px",
-        backgroundColor: props.on ? "green" : "white"
+        backgroundColor: on ? "green" : "white"
     }
     const OffStyle = {
         width: "30px",
         height: "30px",
         border: "1px solid black",
         margin: "2px",
-        backgroundColor: !props.on ? "red" : "white"
+        backgroundColor: !on ? "red" : "white"
 
     }
     const indicatorStyle = {
@@ -30,17 +37,18 @@ export const OnOff = (props: PropsType) => {
         borderRadius: "15px",
         border: "1px solid black",
         margin: "2px",
-        backgroundColor: props.on ? "green" : "red"
+        backgroundColor: on? "green" : "red"
     }
 
     const onClicked = () => {
-        props.setStatus(true)
+        setOn(true)
+        props.onClick(true)
     }
 
     const offClicked = () => {
-        props.setStatus(false)
+        setOn(false)
+        props.onClick(false)
     }
-
     return (
         <div>
             <div style={wrapper}>
