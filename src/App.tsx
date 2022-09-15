@@ -6,6 +6,10 @@ import {UncontrolledOnOff} from "./components/OnOff/UncontrolledOnOff";
 import UncontrolledAccordion from "./components/Accordion/UncontrolledAccordion";
 import {UncontrolledRating} from "./components/Rating/UncontrolledRating";
 import {OnOff} from "./components/OnOff/OnOff";
+import Input from "./components/Input/Input";
+import ControlledInput from "./components/Input/ControlledInput";
+import ControlledCheckbox from "./components/Checkbox/ControlledCheckbox";
+import ControlledSelect from "./components/Select/ControlledSelect";
 
 function App() {
     let [ratingValue, setRatingValue] = useState<RatingValueType>(0)
@@ -35,6 +39,10 @@ function App() {
             <UncontrolledRating/>
             <Rating value={ratingValue}
                     onClick={setRatingValue}/>
+            <Input/>
+            <ControlledInput/>
+            <ControlledCheckbox/>
+            <ControlledSelect/>
         </div>
     );
 }
