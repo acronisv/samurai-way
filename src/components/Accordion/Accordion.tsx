@@ -1,15 +1,28 @@
 import React from "react";
 
+type ItemType = {
+    title: string
+    value: any
+}
+
 type AccordionPropsType = {
     titleValue: string
     collapsed: boolean
     setCollapsedHandler: (value:boolean)=>void
+    items: ItemType[]
+    onClick: (value: any)=>void
 }
+
+type AccordionBodyPropsType = {
+    items: ItemType[]
+    onClick: (value: any)=>void
+}
+
 function Accordion(props: AccordionPropsType) {
     console.log("According rendering")
     return <div>
         <AccordionTitle title={props.titleValue} setCollapsed={()=>props.setCollapsedHandler(!props.collapsed)}/>
-        {!props.collapsed && <AccordionBody />}
+        {!props.collapsed && <AccordionBody items={props.items} onClick={props.onClick}/>}
     </div>
 
 }
@@ -20,19 +33,15 @@ type AccordionTitlePropsType = {
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
-    console.log("Accordion.tsx title rendering")
     return (
         <h3 onClick={props.setCollapsed}>{props.title}</h3>
     )
 }
 
-function AccordionBody() {
-    console.log("Accordion.tsx body rendering")
+function AccordionBody(props:AccordionBodyPropsType) {
     return (
         <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            {props.items.map((el,i)=><li onClick={()=>{props.onClick(el.value)}} key={i}>{el.title}</li>)}
         </ul>
     )
 }

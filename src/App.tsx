@@ -13,28 +13,22 @@ import ControlledSelect from "./components/Select/ControlledSelect";
 
 function App() {
     let [ratingValue, setRatingValue] = useState<RatingValueType>(0)
-    let [accordeonCollapsed, setAccordeonCollapsed] = useState<boolean>(false)
+    let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
     let [on, setOn] = useState(false)
+    const onClickCallback = (value:any)=> {
+        console.log(`Item ${value} clicked`)
+    }
 
     return (
         <div className="App">
-            {/*<PageTitle title={"This is app component"}/>*/}
-            {/*<PageTitle title={"Title"}/>*/}
-            {/*Article 1*/}
-            {/*<Accordion titleValue={"First accordion"} collapsed={true}/>*/}
-            {/*<Accordion titleValue={"Second accordion"} collapsed={false}/>*/}
-            {/*Article 2*/}
-            {/*<Rating value={0} />*/}
-            {/*<Rating value={1} />*/}
-            {/*<Rating value={2} />*/}
-            {/*<Rating value={3} />*/}
-            {/*<Rating value={4} />*/}
-            {/*<Rating value={5} />*/}
             <UncontrolledOnOff onClick={setOn}/> {on.toString()}
             <OnOff on={on} setStatus={setOn}/>
             <Accordion titleValue={"Accordion"}
-                       collapsed={accordeonCollapsed}
-                       setCollapsedHandler={setAccordeonCollapsed}/>
+                       collapsed={accordionCollapsed}
+                       setCollapsedHandler={setAccordionCollapsed}
+                       items={[{title: 'Item1', value: 1}, {title: 'Item2', value: 2}, {title: 'Item3', value: 3}]}
+                       onClick={onClickCallback}
+            />
             <UncontrolledAccordion titleValue={"Menu"}/>
             <UncontrolledRating/>
             <Rating value={ratingValue}
