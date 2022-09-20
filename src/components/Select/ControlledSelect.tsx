@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {KeyboardEvent, useState} from 'react';
 import s from './Select.module.css'
 
 type SelectPropsType = {
@@ -25,11 +25,34 @@ const ControlledSelect = (props: SelectPropsType) => {
         selectClickHandler()
     }
 
+    const onKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            for (let i = 0; i < props.items.length; i++) {
+                if (props.items[i].value === hoveredElementValue) {
+                    const pretendentElement = e.key === 'ArrowDown'
+                        ? props.items[i+1]
+                        : props.items[i-1]
+                    if (pretendentElement) {
+                        props.onChange(pretendentElement.value)
+                        setHoveredElementValue(pretendentElement.value)
+                        return
+                    }
+                }
+            }
+            if (!selectedItem) {
+                props.onChange(props.items[0].value)
+            }
+        }
+        if (e.key === 'Enter' || e.key ==='Escape') {
+            setCollapsed(true)
+        }
+    }
+
     const selectedItem = props.items.find(el => el.value === props.value)
     const hoveredItem = props.items.find(el => el.value === hoveredElementValue)
 
     return (
-        <div className={s.select}>
+        <div className={s.select} onKeyUp={onKeyUp} tabIndex={0}>
             <div className={s.selectValue}
                  onClick={selectClickHandler}>
                 {selectedItem && selectedItem.title}</div>
