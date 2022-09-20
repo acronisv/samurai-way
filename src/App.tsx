@@ -15,6 +15,7 @@ function App() {
     let [ratingValue, setRatingValue] = useState<RatingValueType>(0)
     let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
     let [on, setOn] = useState(false)
+    const [selectCurrentValue, setSelectCurrentValue] = useState(2)
     const onClickCallback = (value:any)=> {
         console.log(`Item ${value} clicked`)
     }
@@ -36,7 +37,10 @@ function App() {
             <Input/>
             <ControlledInput/>
             <ControlledCheckbox/>
-            <ControlledSelect/>
+            <ControlledSelect
+                value={selectCurrentValue}
+                onChange={setSelectCurrentValue}
+                items={[{title: 'Item1', value: 1}, {title: 'Item2', value: 2}, {title: 'Item3', value: 3}]}/>
         </div>
     );
 }

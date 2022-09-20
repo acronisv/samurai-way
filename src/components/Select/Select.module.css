@@ -1,0 +1,14 @@
+.selectValue {
+    border: 1px solid black;
+    width: 100px;
+}
+
+.items {
+    position: absolute;
+    border: 1px solid black;
+}
+
+.item.selected {
+    background-color: blue;
+    color: white;
+}
