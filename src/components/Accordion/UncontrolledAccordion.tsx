@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useReducer} from "react";
+import {reducer, TOGGLE_CONSTANT} from "./Reducer";
 
 type UncontrolledAccordionPropsType = {
     titleValue: string
@@ -7,34 +8,33 @@ type UncontrolledAccordionPropsType = {
 function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
     console.log("According rendering")
 
-    const [collapsed, setCollapsed] = useState(false)
+    const [state, dispatch] = useReducer(reducer, {collapsed: false})
 
     const setCollapsedCallback = () => {
-        setCollapsed(!collapsed)
+        dispatch({type: TOGGLE_CONSTANT})
     }
-
 
     return <div>
         <UncontrolledAccordionTitle title={props.titleValue} setCollapsedCallback={setCollapsedCallback}/>
-        {!collapsed && <UncontrolledAccordionBody />}
+        {!state.collapsed && <UncontrolledAccordionBody/>}
 
     </div>
 }
 
 type UncontrolledAccordionTitlePropsType = {
     title: string,
-    setCollapsedCallback: ()=>void
+    setCollapsedCallback: () => void
 }
 
 function UncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
-    console.log("UncontrolledAccordion.tsx title rendering")
     return (
-        <h3 onClick={()=>{props.setCollapsedCallback()}}>{props.title}</h3>
+        <h3 onClick={() => {
+            props.setCollapsedCallback()
+        }}>{props.title}</h3>
     )
 }
 
 function UncontrolledAccordionBody() {
-    console.log("UncontrolledAccordion.tsx body rendering")
     return (
         <ul>
             <li>1</li>
